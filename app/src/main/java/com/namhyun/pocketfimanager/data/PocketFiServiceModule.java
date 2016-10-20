@@ -11,8 +11,12 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 @Module
-public class NetworkModule {
-    private final String mBaseUrl = "http://192.168.1.1";
+public class PocketFiServiceModule {
+    String mBaseUrl;
+
+    public PocketFiServiceModule(String baseUrl) {
+        this.mBaseUrl = baseUrl;
+    }
 
     @Provides
     @Singleton
@@ -39,5 +43,11 @@ public class NetworkModule {
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .client(client)
                 .build();
+    }
+
+    @Provides
+    @Singleton
+    PocketFiService providesService(Retrofit retrofit) {
+        return retrofit.create(PocketFiService.class);
     }
 }

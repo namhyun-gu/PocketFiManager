@@ -7,7 +7,7 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import rx.Observable;
 
-public interface PockFiService {
+public interface PocketFiService {
     @GET("/usr/kr/basic/state.asp")
     Call<String> requestState(@Header("Authorization") String authorization);
 
